@@ -1,4 +1,4 @@
-package crafting_interpreters.lox;
+package crafting_interpreters.lox.chapter_4;
 
 
 import java.io.BufferedReader;
@@ -34,7 +34,7 @@ public class Lox {
         BufferedReader reader = new BufferedReader(input);
 
         for(;;) {
-            System.out.print("> ");
+            System.out.print("ch4:> ");
             String line = reader.readLine();
             if (line == null) break;
             run(line);
