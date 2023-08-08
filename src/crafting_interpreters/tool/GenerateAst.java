@@ -21,7 +21,7 @@ public class GenerateAst {
     }
 
 //    public static void main(String[] args) throws IOException {
-//        String outputDir = "C:\\Users\\jewul\\IdeaProjects\\crafting_interpreters\\src\\crafting_interpreters\\tool";
+//        String outputDir = "C:\\Users\\jewul\\IdeaProjects\\crafting_interpreters\\src\\crafting_interpreters\\tool\\";
 //        defineAst(outputDir, "Expr", Arrays.asList(
 //                "Binary      : Expr left, Token operator, Expr right",
 //                "Grouping    : Expr expression",
