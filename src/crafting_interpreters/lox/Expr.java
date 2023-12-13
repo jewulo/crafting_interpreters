@@ -42,7 +42,12 @@ public abstract class Expr {
     this.value = value;
     }
 
-    @Override
+    // I added this new empty constructor to help with returning an empty expression in
+    // the primary() method of the Parse class in Parse.java
+    //    public Literal() { value = null; }
+    //    removed by the end of chapter 6
+
+        @Override
     <R> R accept(Visitor<R> visitor) {
         return visitor.visitLiteralExpr(this);
     }
