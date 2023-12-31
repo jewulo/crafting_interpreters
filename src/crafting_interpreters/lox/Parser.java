@@ -145,7 +145,7 @@ public class Parser {
 
     private void synchronize() {
         advance();
-        while (isAtEnd()) {
+        while (!isAtEnd()) {
             if (previous().type == SEMICOLON) return;
 
             switch (peek().type) {
