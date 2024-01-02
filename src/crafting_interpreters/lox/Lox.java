@@ -39,7 +39,7 @@ public class Lox {
         BufferedReader reader = new BufferedReader(input);
 
         for(;;) {
-            System.out.print("ch7:> ");
+            System.out.print("ch8:> ");
             String line = reader.readLine();
             if (line == null) break;
             run(line);
@@ -52,12 +52,15 @@ public class Lox {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
         Parser parser = new Parser(tokens);
-        Expr expression = parser.parse();
+
+        //Expr expression = parser.parse();
+        List<Stmt> statements = parser.parse();
 
         if (hadError) return;
 
-        // System.out.println(new AstPrinter().print(expression));
-        interpreter.interpret(expression);
+        //System.out.println(new AstPrinter().print(expression));
+        //interpreter.interpret(expression);
+        interpreter.interpret(statements);
     }
 
     static void error(int line, String message) {

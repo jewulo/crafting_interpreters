@@ -1,0 +1,27 @@
+print "one";
+print true;
+print 2 + 1;
+
+var a = "before";
+print a;    // "before"
+var a = "after";
+print a;    // "after"
+
+var a = 1;
+var b = 2;
+print a + b;
+
+var a = "before";
+
+var a = 1;
+print a = 2;
+
+{
+    var a = "first";
+    print a; // "first"
+}
+
+{
+    var a = "second";
+    print a; // "second"
+}

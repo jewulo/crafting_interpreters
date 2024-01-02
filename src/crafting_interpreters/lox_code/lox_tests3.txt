@@ -1,0 +1,13 @@
+var a;
+var b;
+
+a = "assigned";
+print a; // OK, was assigned first
+
+print b; // ERROR
+
+var a = 1;
+{
+    var a = a + 2;
+    print a;
+}
