@@ -21,13 +21,27 @@ public class Environment {
     }
 
     Object get(Token name) {
+        // search the local environment (local scope)...
         if (values.containsKey(name.lexeme)) {
             return values.get(name.lexeme);
         }
 
+        // ...if not found in local scope, then search outer scope or enclosing scope...
         if (enclosing != null) return enclosing.get(name);
 
+        // ...otherwise we have an exception, variable is undefined
         throw new RuntimeError(name, "Undefined variable '" + name.lexeme + "'.");
+
+        // note:
+        //
+        /*
+
+            { // enclosing scope
+                { // local scope
+                }
+            }
+
+        * */
     }
 
     void assign(Token name, Object value) {

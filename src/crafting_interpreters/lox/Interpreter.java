@@ -32,7 +32,15 @@ public class Interpreter implements Expr.Visitor<Object>,
 
     @Override
     public Object visitLogicalExpr(Expr.Logical expr) {
-        return null;
+        Object left = evaluate(expr.left);
+
+        if (expr.operator.type == TokenType.OR) {
+            if (isTruthy(left)) return left;
+        } else { // expr.operator.type == TokenType.AND
+            if (!isTruthy(left)) return left;
+        }
+
+        return evaluate(expr.right);
     }
 
     @Override
@@ -99,6 +107,11 @@ public class Interpreter implements Expr.Visitor<Object>,
 
     @Override
     public Void visitIfStmt(Stmt.If stmt) {
+        if (isTruthy(evaluate(stmt.condition))) {
+            execute(stmt.thenBranch);
+        } else if (stmt.elseBranch != null) {
+            execute(stmt.elseBranch);
+        }
         return null;
     }
 
@@ -164,11 +177,11 @@ public class Interpreter implements Expr.Visitor<Object>,
                 // error checking for PLUS is a special case because PLUS is overloaded for both numbers and strings
                 if (left instanceof Double && right instanceof Double) {
                     return (double)left + (double)right;
-                }
+                } // [plus]
 
                 if (left instanceof String && right instanceof String) {
-                    return (double)left + (double)right;
-                }
+                    return (String)left + (String)right;
+                } // [append]
 
                 throw new RuntimeError(expr.operator, "Operands must be two numbers or two strings.");
             case SLASH:

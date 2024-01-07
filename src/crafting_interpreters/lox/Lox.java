@@ -39,7 +39,7 @@ public class Lox {
         BufferedReader reader = new BufferedReader(input);
 
         for(;;) {
-            System.out.print("ch8:> ");
+            System.out.print("ch9:> ");
             String line = reader.readLine();
             if (line == null) break;
             run(line);
