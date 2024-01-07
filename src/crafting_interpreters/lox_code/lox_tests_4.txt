@@ -1,0 +1,23 @@
+var test = 7;
+print test;
+
+if (test == 7)
+    print "test is 7";
+else
+    print "test is not 7";
+
+if (test > 6)
+    print "test is greater than 6";
+
+if (test < 8)
+    print "test is less than 8";
+
+if (test > 6)
+    print "test is greater than 6";
+else if (test < 8) // unreachable code
+    print "test is less than 8";
+
+if (test < 8)
+    print "test is less than 8";
+else if (test > 6) // unreachable code
+    print "test is greater than 6";
