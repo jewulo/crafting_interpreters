@@ -1,0 +1,27 @@
+fun sayHi_1() {
+    print "Hi, ";
+}
+print sayHi_1;        // "<fn sayHi_1>"
+sayHi_1;
+sayHi_1();             // function invocation is not working
+
+fun sayHi_2(first, last) {
+    print "Hi, " + first + " " + last + "!";
+}
+print sayHi_2;        // "<fn sayHi_2>"
+
+
+fun add(a, b, c) {
+    print a + b + c;
+}
+print add;  // "<fn add>"
+add(1,2,3);
+// add(1,2,3,4);   // Expected 3 arguments but got 4.
+// add(1,2);       // Expected 3 arguments but got 2.
+
+fun count(n) {
+    if (n > 1) count(n - 1);
+    print n;
+}
+print count;    // "<fn count>"
+count(3);
