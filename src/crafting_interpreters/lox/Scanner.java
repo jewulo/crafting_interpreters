@@ -101,7 +101,7 @@ public class Scanner {
                         return;
                     }
 
-                    // move over "*/"
+                    // move ahead "*/"
                     advance();  // move ahead of '*'
                     advance();  // move ahead of '/'
                 }
