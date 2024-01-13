@@ -12,3 +12,13 @@ fun makeCounter() {
 var counter = makeCounter();
 counter(); // "1".
 counter(); // "2".
+
+fun scope(a) {
+    var a = "local";
+    print a;
+}
+
+var x;
+scope(x);
+print x;
+

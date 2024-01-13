@@ -1,4 +1,15 @@
 // with the inclusion of return values in chapter 10 we can now
+// jump out of a loop at any point
+fun count(n) {
+    while (n < 100) {
+        if (n == 3) return n;
+        print n;
+        n = n + 1;
+    }
+}
+count(0);
+
+// with the inclusion of return values in chapter 10 we can now
 // update the fibonacci function to use recursion.
 
 fun fib(n) {

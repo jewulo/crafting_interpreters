@@ -1,0 +1,8 @@
+fun test(a) {
+    print a;
+}
+test(1);
+
+fun (a) {
+    print a;
+}
