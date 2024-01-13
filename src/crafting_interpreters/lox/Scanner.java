@@ -217,8 +217,8 @@ public class Scanner {
         while (isAlphaNumeric(peek())) advance();
 
         String text = source.substring(start, current);
-        TokenType type = keywords.get(text);
-        if (type == null) type = TokenType.IDENTIFIER;
+        TokenType type = keywords.get(text);    // check if the string is a keyword
+        if (type == null) type = TokenType.IDENTIFIER; // if it is not in keywords then its is just a user identifier
         addToken(type);
     }
 

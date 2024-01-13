@@ -27,7 +27,7 @@ public class Environment {
         }
 
         // ...if not found in local scope, then search outer scope or enclosing scope...
-        if (enclosing != null) return enclosing.get(name);
+        if (enclosing != null) return enclosing.get(name); // this is object/data recursion on functional recursion
 
         // ...otherwise we have an exception, variable is undefined
         throw new RuntimeError(name, "Undefined variable '" + name.lexeme + "'.");
@@ -35,13 +35,11 @@ public class Environment {
         // note:
         //
         /*
-
             { // enclosing scope
                 { // local scope
                 }
             }
-
-        * */
+        **/
     }
 
     void assign(Token name, Object value) {

@@ -52,10 +52,12 @@ public class Parser {
 
     private Stmt forStatement() {
         // NOTE: The 'for' statement uses desugaring. It is desugared into a 'while' statement.
-        // This is why it doesn't have an entry in GenerateAst.java. It uses the existing while
-        // infrastructure.
+        // This is why it doesn't have an entry in GenerateAst.java. It uses the existing 'while'
+        // loop infrastructure.
 
-        // for (init; cond; inc) {}
+        // for (init; cond; inc) { body; }
+        // desugars into
+        // { init; while (cond) { body; inc; } }
 
         consume(LEFT_PAREN, "Expect '(' after 'for'.");
 
