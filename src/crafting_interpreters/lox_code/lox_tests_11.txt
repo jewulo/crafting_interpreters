@@ -16,14 +16,19 @@ var a = "global";
         print a;
     }
 
-    showA();
-    var a = "block";
-    showA();
+    showA();            // prints "global" because showA() captured 'a' from the outer scope
+    var a = "block";    // create new local environment containing a new 'a''.
+    showA();            // prints "global" because showA() still refers to captured 'a' from the outer scope
+}
+
+var a = "outer";
+{
+    // var a = a;  // Error at 'a': Can't read local variable in its own initializer.
 }
 
 fun bad() {
     var a = "first";
-    var a = "second";
+    var a = "second"; // Error at 'a': Already a variable with this name in this scope
 }
 
-return "at top level"; // invalid return statement at top level
+return "at top level"; // Error at 'return': Can't return from top-level code.

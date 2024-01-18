@@ -1,0 +1,32 @@
+class Bagel {}          // define a Bagel class
+print Bagel;            // prints "Bagel"
+var bagel = Bagel();    // create Bagel object or instance
+print bagel;            // prints "Bagel instance"
+print Bagel();          // prints "Bagel instance"
+
+// define a DevenshireCream class, with 1 method serveOn;
+class DevenshireCream {
+    serveOn() {
+        return "Scones";
+    }
+}
+print DevenshireCream;  // prints "DevenshireCream"
+print DevenshireCream().serveOn;
+print DevenshireCream().serveOn();
+
+// define a Breakfast class, with 2 methods cook & serve;
+class Breakfast {
+    cook() {
+        print "Eggs a-fryin'!";
+    }
+
+    serve(who) {
+        print "Enjoy your breakfast, " + who + ".";
+    }
+}
+print Breakfast; // prints "Breakfast"
+var brk = Breakfast();
+brk.cook();
+brk.serve("Bob");
+print brk.cook;
+print brk.serve;

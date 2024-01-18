@@ -5,11 +5,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
+
+/**
+ * Each time we visit a variable Resolver tells the interpreter how many
+ * scopes there are between the current one and the enclosing one where
+ * the interpreter can find the variables value.
+ */
+
 public class Resolver implements Expr.Visitor<Object>,
                                  Stmt.Visitor<Void> {
 
     private enum FunctionType {
         NONE,
+        METHOD,
         FUNCTION
     }
     private final Interpreter interpreter;
@@ -108,6 +116,7 @@ public class Resolver implements Expr.Visitor<Object>,
 
     @Override
     public Object visitGetExpr(Expr.Get expr) {
+        resolve(expr.object);
         return null;
     }
 
@@ -131,6 +140,8 @@ public class Resolver implements Expr.Visitor<Object>,
 
     @Override
     public Object visitSetExpr(Expr.Set expr) {
+        resolve(expr.value);
+        resolve(expr.object);
         return null;
     }
 
@@ -141,6 +152,7 @@ public class Resolver implements Expr.Visitor<Object>,
 
     @Override
     public Object visitThisExpr(Expr.This expr) {
+        resolveLocal(expr, expr.keyword);
         return null;
     }
 
@@ -171,6 +183,18 @@ public class Resolver implements Expr.Visitor<Object>,
 
     @Override
     public Void visitClassStmt(Stmt.Class stmt) {
+        declare(stmt.name);
+        define(stmt.name);
+
+        beginScope();
+        scopes.peek().put("this", true); // place the 'this' variable into the class definition
+
+        for (Stmt.Function method : stmt.methods) {
+            FunctionType declaration = FunctionType.METHOD;
+            resolveFunction(method, declaration);
+        }
+
+        endScope();
         return null;
     }
 

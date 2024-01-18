@@ -11,6 +11,12 @@ public class LoxFunction implements LoxCallable {
         this.declaration = declaration;
     }
 
+    public LoxFunction bind(LoxInstance instance) {
+        Environment environment = new Environment(closure);
+        environment.define("this", instance);
+        return new LoxFunction(declaration, environment);
+    }
+
     public String toString() {
         return "<fn " + declaration.name.lexeme + ">";
     }
@@ -28,7 +34,7 @@ public class LoxFunction implements LoxCallable {
             environment.define(declaration.params.get(i).lexeme, arguments.get(i));
         }
 
-        try { // we need a try block here to detect return value exceptions in the interpreter...
+        try { // we need a try block here to detect return values in the interpreter using Java's Exception mechanism
             interpreter.executeBlock(declaration.body, environment);
         } catch (Return returnValue) {
             return returnValue.value;
