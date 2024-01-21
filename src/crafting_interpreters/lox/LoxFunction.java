@@ -5,8 +5,10 @@ import java.util.List;
 public class LoxFunction implements LoxCallable {
     private final Stmt.Function declaration;
     private final Environment closure;
+    private boolean isInitializer;
 
-    LoxFunction(Stmt.Function declaration, Environment closure) {
+    LoxFunction(Stmt.Function declaration, Environment closure, boolean isInitializer) {
+        this.isInitializer = isInitializer;
         this.closure = closure;
         this.declaration = declaration;
     }
@@ -14,7 +16,7 @@ public class LoxFunction implements LoxCallable {
     public LoxFunction bind(LoxInstance instance) {
         Environment environment = new Environment(closure);
         environment.define("this", instance);
-        return new LoxFunction(declaration, environment);
+        return new LoxFunction(declaration, environment, isInitializer);
     }
 
     public String toString() {
@@ -37,9 +39,11 @@ public class LoxFunction implements LoxCallable {
         try { // we need a try block here to detect return values in the interpreter using Java's Exception mechanism
             interpreter.executeBlock(declaration.body, environment);
         } catch (Return returnValue) {
+            if (isInitializer) return closure.getAt(0, "this");
             return returnValue.value;
         }
 
+        if (isInitializer) return closure.getAt(0, "this");
         // ... if no return value exception then we just return null
         return null;
     }

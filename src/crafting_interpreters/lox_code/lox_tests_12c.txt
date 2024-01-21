@@ -35,7 +35,7 @@ class Cake {
 }
 
 var cake = Cake();
-cake.flavour = "German chocolate";
+cake.flavour = "German chocolate";  // add an instance field.
 cake.taste();
 
 class Thing {
@@ -55,7 +55,22 @@ callback();
 
 //print this;       // Undefined variable 'this'.
 
-fun notAMethod() {
-    print this;     // Undefined variable 'this'.
+
+//fun notAMethod() {
+//    print this;     // Undefined variable 'this'.
+//}
+//notAMethod();       // Undefined variable 'this'.
+
+class C1 {
+    init() {
+        print "C1 init!";
+    }
 }
-notAMethod();       // Undefined variable 'this'.
+
+var c1 = C1();
+c1.field = "A Dummy";
+
+var c2 = clock();
+print c2;
+
+print clock;
