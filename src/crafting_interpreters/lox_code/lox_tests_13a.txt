@@ -1,0 +1,2 @@
+var NotAClass = "I am totally not a class";
+class SubClass < NotAClass {} // ?! Error: Super class must be a class.

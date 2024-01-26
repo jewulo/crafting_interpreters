@@ -1,0 +1,12 @@
+// Invalid uses of super
+
+//super.notEvenInAclass();      // Error at 'super': Can't use 'super' outside of a class.
+
+class Eclair {
+    cook() {
+        super.cook();           // Error at 'super': Can't use 'super' in a class with no superclass.
+        print "Pipe full of creme patissiere.";
+    }
+}
+
+Eclair().cook();
